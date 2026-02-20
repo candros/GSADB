@@ -4,5 +4,5 @@ This is a deep learning tool designed for the automated segmentation of swamp-la
 
 An example script for using the model is contained in the repository and is called "Example.ipynb". The other notebook called "trainer.ipynb" is included for reproducibility, in case a user wishes to review the code that generated and trained the models described in the manuscript.
 
-⚠️ Important: Downloading Model WeightsCurrently, there is a known issue when downloading this repository as a ZIP file. GitHub LFS (Large File Storage) may replace the model weights (.h5py) with a small pointer file, causing the model to fail to load.To ensure you get the full model weights
+⚠️ Important: Currently, there is a known issue when downloading this repository as a ZIP file. GitHub LFS (Large File Storage) may replace the model weights (.h5py) with a small pointer file, causing the model to fail to load.
 While a more permanent fix in under development, if you use the ZIP download please go to the model/pretrained/ folder on GitHub and download the .h5py file individually by clicking the "Download" button on that specific file and then placing them in the model weights folder (model/pretrained/model_architecture.hpy5).
