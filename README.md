@@ -9,5 +9,5 @@ An example script for using the model is contained in the repository and is call
 ⚠️ Important: Currently, there is a known issue when downloading this repository as a ZIP file. GitHub LFS (Large File Storage) may replace the model weights (.h5py) with a small pointer file, causing the model to fail to load.
 While a more permanent fix in under development, if you use the ZIP download please go to the model/pretrained/ folder on GitHub and download the .h5py file individually by clicking the "Download" button on that specific file and then placing them in the model weights folder (model/pretrained/"insert model architecture here".hpy5).
 
-If you use SwampEye, the ResUNet34 model weights, or the GEE data acquisition scripts in your research, please cite the following paper:
+If you use this repository in your research, please cite the following paper:
 Andros, C.S., Conery, I.W., Alvarado, T.R. et al. Swamp-Eye: a deep learning model for monitoring wetlands change across the globe. Sci Rep (2026). https://doi.org/10.1038/s41598-026-39257-1
