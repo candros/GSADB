@@ -1,0 +1,33 @@
+// Download script used to curate images for the GSADB
+// Uses dates and an AOI to filter the Sentinel2 imagery collection, prints details to the console and batch downloads the imagery from the AOI to the specified folder in your Google Drive
+
+// Load the Harmonized Sentinel2 surface reflectance image collection
+var sentinel2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+
+// Example parameters for an export.
+var roi = geometry //Place your own AOI
+var start_date = '2019-03-20' // Replace with desired start date
+var end_date = '2019-12-31' // Replace with the desired end date
+var drive_folder = 'gee_downloads' // Replace with the name of the folder in your Google Drive where you wish to store the images
+var cloud_cover = 0.99; // Minimum percentage of cloud cover in Sentinel2 tiles
+
+// Create the image collection using the filter parameters specified above. 
+var ic = sentinel2.filterDate(start_date, end_date).filter(ee.Filter.lt('CLOUD_COVERAGE_ASSESSMENT', cloud_cover)).filterBounds(roi).select(['B2', 'B3', 'B4', 'B8', 'B11', 'B12']);
+
+// Publically available helper functions to assist with batch downloads from GEE
+var batch = require('users/fitoprincipe/geetools:batch') // https://github.com/fitoprincipe/geetools-code-editor
+
+// Parameters for the visualization
+var visualization = {
+  min: 0.0,
+  max: 1000,
+  bands: ['B4', 'B3', 'B2'],
+};
+
+// Display what was retrieved for inspection
+Map.centerObject(ic.first())
+print(ic.first().id())
+Map.addLayer(ic.first(), visualization, 'RGB');
+
+// Run the batch download on the gathered image collection
+batch.Download.ImageCollection.toDrive(ic, drive_folder, {scale: 10, type: 'float'})
